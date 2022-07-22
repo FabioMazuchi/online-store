@@ -4,8 +4,8 @@ class Loading extends React.Component {
   render() {
     return (
       <div>
-        <section>
-          Carregando...
+        <section className='loading'>
+          <p className='carregando'>Carregando...</p>
         </section>
       </div>
     );

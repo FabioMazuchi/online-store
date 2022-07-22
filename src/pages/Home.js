@@ -1,13 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
-} from '../services/api';
-import Loading from '../components/Loading';
-import ProductList from '../components/ProductList';
-import '../App.css';
-import Categories from '../components/Categories';
+} from "../services/api";
+import Loading from "../components/Loading";
+import ProductList from "../components/ProductList";
+import "../App.css";
+import Categories from "../components/Categories";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 class Home extends React.Component {
   constructor() {
@@ -20,12 +22,12 @@ class Home extends React.Component {
     this.a = this.a.bind(this);
 
     this.state = {
-      searchText: '',
+      searchText: "",
       listProduct: [],
       isLoading: false,
       isLoadingCategory: true,
-      categories: '',
-      Category: '',
+      categories: "",
+      Category: "",
     };
   }
 
@@ -57,7 +59,7 @@ class Home extends React.Component {
     const { Category, searchText } = this.state;
     const CatRequest = await getProductsFromCategoryAndQuery(
       Category,
-      searchText,
+      searchText
     );
     this.setState({ listProduct: CatRequest, isLoading: false });
   }
@@ -67,43 +69,47 @@ class Home extends React.Component {
   }
 
   render() {
-    const { listProduct, isLoading, isLoadingCategory, categories } = this.state;
+    const { listProduct, isLoading, isLoadingCategory, categories } =
+      this.state;
 
     return (
       <div>
-        <header className="header-container">
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <section>
-            <input
-              data-testid="query-input"
-              onChange={ this.handlechangeSearch }
-              className="search-input"
-              type="text"
-            />
-            <button
-              data-testid="query-button"
-              className="search-button"
-              type="button"
-              onClick={ this.handleClick }
-            >
-              Buscar
-            </button>
+        <Header />
+        <section className="container">
+          <div>
+            <p data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
+            <section className="formSearch">
+              <input
+                data-testid="query-input"
+                onChange={this.handlechangeSearch}
+                className="search-input"
+                type="text"
+              />
+              <button
+                data-testid="query-button"
+                className="search-button"
+                type="button"
+                onClick={this.handleClick}
+              >
+                Buscar
+              </button>
+            </section>
+          </div>
+          <section className="categories">
+            <nav>
+              <Categories
+                categoriesProp={categories}
+                isLoadingCategoryProp={isLoadingCategory}
+                renderCategory={this.renderCategory}
+              />
+            </nav>
+            {isLoading && <Loading />}
+            {listProduct.length !== 0 && <ProductList products={listProduct} />}
           </section>
-        </header>
-        <Link data-testid="shopping-cart-button" to="/cart">
-          <i className="fas fa-shopping-cart" />
-        </Link>
-        {isLoading && <Loading />}
-        {listProduct.length !== 0 && <ProductList products={ listProduct } />}
-        <nav>
-          <Categories
-            categoriesProp={ categories }
-            isLoadingCategoryProp={ isLoadingCategory }
-            renderCategory={ this.renderCategory }
-          />
-        </nav>
+        </section>
+        <Footer />
       </div>
     );
   }

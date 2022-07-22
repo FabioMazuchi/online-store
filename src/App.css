@@ -1,72 +1,241 @@
-.header-container {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-}
-
-.card {
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px gray;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Asul', sans-serif;
+}
+
+header {
+  background-color: #48902D;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 2%;
+  color: white;
+}
+
+header i {
+  font-size: 25px;
+  color: white;
+  margin-right: 18px;
+}
+
+.carregando {
+  display: none;
+}
+
+.container {
   display: flex;
   flex-direction: column;
-  height: auto;
-  margin: 5px;
-  padding: 2rem 1rem 1rem;
-  position: relative;
-  width: 200px;
+  padding: 0 1%;
 }
 
-.card-container {
-  display: inline-block;
-  flex-direction: row;
-}
-
-.image-card {
-  width: 100%;
-}
-
-.card-price {
-  color: rgb(138, 22, 37);
-  flex-grow: 1;
-  padding: 10px;
-  text-align: center;
-  text-shadow: 2px 2px 10px rgb(22, 22, 22);
-}
-
-.card-title {
-  align-items: center;
+.container div {
+  padding: 12px 0;
+  margin: 10px auto;
   display: flex;
-  margin: 5px auto;
-  text-align: center;
+  align-items: center;
+}
+
+.container div p {
+  margin-right: 10px;
+  color: #20581c;
 }
 
 .search-button {
-  background-color: rgb(138, 22, 37);
-  border-radius: 0.3rem;
-  box-shadow: 2px 2px 10px gray;
-  color: aliceblue;
+  background-color: #95759A;
+  border-radius: 8px;
+  box-shadow: 2px 2px rgb(173, 169, 169);
+  color: white;
+  border: 0;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .search-input {
-  background-color: rgb(173, 49, 65);
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px gray;
-  color: aliceblue;
-  font-weight: 600;
-  padding: 0.5rem;
+  border-radius: 8px;
+  padding: 0.4rem;
   width: 350px;
+  margin-right: 5px;
+}
+
+.categories {
+  display: flex;
+}
+
+.categories nav {
+  margin-top: 31px;
+  width: 18%;
+  background-color: #95759A;
+  border: 2px solid #ccc;
+  height: 1140px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+nav li {
+  padding: 6px 8px;
+  margin-bottom: 4px;
+}
+
+nav li label {
+  cursor: pointer;
+}
+
+.tira-ponto {
+  cursor: pointer;
+}
+
+.tira-ponto:hover {
+  background-color: #b891be;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+.products {
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+.card-container{
+  display: flex;
+  flex-basis: 19%;
+  border: 1px solid rgb(153, 147, 147);
+}
+
+/* Referência: https://qastack.com.br/programming/9601357/placing-border-inside-of-div-and-not-on-its-edge */
+.card-container:hover {
+  box-shadow:inset 0px 0px 0px 3px #48902D;
+}
+
+.card a{
+  text-decoration: none;
+  padding: 0 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 180px;
+}
+
+.card a p {
+  font-size: 15px;
+  color: black;
+}
+
+.card a img {
+  width: 70%;
+  height: 60px;
+}
+
+.card-button {
+  background-color: #48902D;
+  border: 0;
+  padding: 2px 8px;
+  color: white;
+  font-size: 14px;
+}
+
+.card-button:hover {
+  background-color: #3b7925;
 }
 
 .tira-ponto {
   list-style-type: none;
 }
 
-i {
-  color: black;
-  font-size: 25px;
-  margin-right: 10px;
+.container-details {
+  min-height: 560px;
+  padding: 30px 4%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.details-product {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
+  align-items: center;
+  justify-content: space-around;
+  height: 300px;
+}
+
+.details-product img {
+  width: 70%;
+  height: 150px;
+}
+
+.details p {
+  margin-bottom: 8px;
+}
+
+.cart {
+  padding: 30px 2%;
+}
+
+.cart li {
+  list-style-type: none;
+  padding: 12px;
+  border-bottom: 1px solid;
+  margin-bottom: 8px;
+}
+
+.cart-product {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 160px;
+}
+
+.excluir {
+  width: 20px;
+  height: 20px;
+  background-color: tomato;
+  border: 0;
+  cursor: pointer;
+  color: white;
+}
+
+.cart-details img {
+  width: 60%;
+  height: 60px;
+}
+
+.buttons {
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+}
+
+.buttons button {
+  width: 20px;
+  height: 20px;
+  background-color: #95759A;
+  border: 0;
+  color: white;
+  font-size: 15px;
+}
+
+.finalizar {
+  background-color: #95759A;
+  border: 0;
+  padding: 2px 8px;
+  color: white;
+  font-size: 18px;
+}
+
+footer {
+  padding: 12px 0;
+  background-color: #48902D;
+  color: white;
+  text-align: center;
+  font-size: 18px;
 }

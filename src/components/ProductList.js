@@ -39,7 +39,7 @@ class ProductList extends React.Component {
     const minLength = 0;
 
     return (
-      <div>
+      <div className="products">
         {
           results.length === minLength ? (
             <h2>Nenhum produto foi encontrado</h2>

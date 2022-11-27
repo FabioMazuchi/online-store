@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { getProductFromId } from "../services/api";
-import Header from "../components/Header";
-import Loading from "../components/Loading";
-import Footer from "../components/Footer";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { getProductFromId } from '../services/api';
+import Header from '../components/Header';
+import Loading from '../components/Loading';
+import Footer from '../components/Footer';
 
 class ProductDetails extends Component {
   constructor() {
@@ -26,7 +25,7 @@ class ProductDetails extends Component {
   componentDidUpdate(_, prevState) {
     const { allProducts } = this.state;
     if (prevState.allProducts !== allProducts) {
-      localStorage.setItem("products", JSON.stringify(allProducts));
+      localStorage.setItem('products', JSON.stringify(allProducts));
     }
   }
 
@@ -36,7 +35,7 @@ class ProductDetails extends Component {
   }
 
   GetOnMount() {
-    const GET_ITEMS = JSON.parse(localStorage.getItem("products"));
+    const GET_ITEMS = JSON.parse(localStorage.getItem('products'));
     this.setState({ allProducts: GET_ITEMS || [] });
   }
 
@@ -56,7 +55,6 @@ class ProductDetails extends Component {
 
   render() {
     const { product, loading } = this.state;
-    {product.attributes !== undefined && console.log(product.attributes[0]);}
     return (
       <div>
         <Header />
@@ -65,12 +63,15 @@ class ProductDetails extends Component {
         ) : (
           <section className="container-details">
             <div className="details-product">
-              <p data-testid="product-detail-name">{product.title}</p>
-              <img src={product.thumbnail} alt={product.title} />
-              <h3>R${product.price}</h3>
+              <p data-testid="product-detail-name">{ product.title }</p>
+              <img src={ product.thumbnail } alt={ product.title } />
+              <h3>
+                R$
+                { product.price }
+              </h3>
               <button
                 className="card-button"
-                onClick={() => this.addCart(product)}
+                onClick={ () => this.addCart(product) }
                 type="button"
                 data-testid="product-detail-add-to-cart"
               >
@@ -78,9 +79,16 @@ class ProductDetails extends Component {
               </button>
             </div>
             <div className="details">
-              {product.attributes !== undefined && product.attributes.map((attr => (
-                <p><b>{attr.name}</b>: {attr.value_name}</p>
-              )))}
+              {product.attributes !== undefined
+              && product.attributes.map((attr) => (
+                <p key={ product.id }>
+                  <b>
+                    {attr.name}
+                  </b>
+                  :
+                  { attr.value_name }
+                </p>
+              ))}
             </div>
           </section>
         )}

@@ -1,15 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
-} from "../services/api";
-import Loading from "../components/Loading";
-import ProductList from "../components/ProductList";
-import "../App.css";
-import Categories from "../components/Categories";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+} from '../services/api';
+import Loading from '../components/Loading';
+import ProductList from '../components/ProductList';
+import '../App.css';
+import Categories from '../components/Categories';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 class Home extends React.Component {
   constructor() {
@@ -22,12 +21,12 @@ class Home extends React.Component {
     this.a = this.a.bind(this);
 
     this.state = {
-      searchText: "",
+      searchText: '',
       listProduct: [],
       isLoading: false,
       isLoadingCategory: true,
-      categories: "",
-      Category: "",
+      categories: '',
+      Category: '',
     };
   }
 
@@ -59,7 +58,7 @@ class Home extends React.Component {
     const { Category, searchText } = this.state;
     const CatRequest = await getProductsFromCategoryAndQuery(
       Category,
-      searchText
+      searchText,
     );
     this.setState({ listProduct: CatRequest, isLoading: false });
   }
@@ -69,9 +68,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { listProduct, isLoading, isLoadingCategory, categories } =
-      this.state;
-
+    const { listProduct, isLoading, isLoadingCategory, categories } = this.state;
     return (
       <div>
         <Header />
@@ -83,7 +80,7 @@ class Home extends React.Component {
             <section className="formSearch">
               <input
                 data-testid="query-input"
-                onChange={this.handlechangeSearch}
+                onChange={ this.handlechangeSearch }
                 className="search-input"
                 type="text"
               />
@@ -91,7 +88,7 @@ class Home extends React.Component {
                 data-testid="query-button"
                 className="search-button"
                 type="button"
-                onClick={this.handleClick}
+                onClick={ this.handleClick }
               >
                 Buscar
               </button>
@@ -100,13 +97,13 @@ class Home extends React.Component {
           <section className="categories">
             <nav>
               <Categories
-                categoriesProp={categories}
-                isLoadingCategoryProp={isLoadingCategory}
-                renderCategory={this.renderCategory}
+                categoriesProp={ categories }
+                isLoadingCategoryProp={ isLoadingCategory }
+                renderCategory={ this.renderCategory }
               />
             </nav>
             {isLoading && <Loading />}
-            {listProduct.length !== 0 && <ProductList products={listProduct} />}
+            {listProduct.length !== 0 && <ProductList products={ listProduct } />}
           </section>
         </section>
         <Footer />

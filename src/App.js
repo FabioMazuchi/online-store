@@ -7,18 +7,16 @@ import ProductDetails from './pages/ProductDetails';
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <Switch>
-            <Route
-              path="/details/:id"
-              render={ (propsRoute) => <ProductDetails { ...propsRoute } /> }
-            />
-            <Route exact path="/cart" component={ Cart } />
-            <Route exact path="/" component={ Home } />
-          </Switch>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            path="/details/:id"
+            render={ (propsRoute) => <ProductDetails { ...propsRoute } /> }
+          />
+          <Route exact path="/cart" component={ Cart } />
+          <Route exact path="/" component={ Home } />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
